@@ -30,33 +30,26 @@ namespace JeuDuPendu
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.cbbAlphabet = new System.Windows.Forms.ComboBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.lblWinner = new System.Windows.Forms.Label();
             this.lblPlayer1 = new System.Windows.Forms.Label();
             this.lblPlayer2 = new System.Windows.Forms.Label();
             this.txtPly1 = new System.Windows.Forms.TextBox();
             this.grpLetters = new System.Windows.Forms.GroupBox();
+            this.lblLettersEntered = new System.Windows.Forms.Label();
             this.btnPly2Confirm = new System.Windows.Forms.Button();
             this.btnPly1Confirm = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.lblMysteryWord = new System.Windows.Forms.Label();
+            this.lblSecretWord = new System.Windows.Forms.Label();
             this.lblInputConfirm = new System.Windows.Forms.Label();
-            this.lblLettersEntered = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.label3 = new System.Windows.Forms.Label();
+            this.imgRejouer = new System.Windows.Forms.PictureBox();
+            this.pctPendu = new System.Windows.Forms.PictureBox();
             this.grpLetters.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.imgRejouer)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pctPendu)).BeginInit();
             this.SuspendLayout();
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(338, 96);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(230, 236);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
             // 
             // cbbAlphabet
             // 
@@ -68,25 +61,15 @@ namespace JeuDuPendu
             this.cbbAlphabet.TabIndex = 3;
             this.cbbAlphabet.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbbAlphabet_KeyPress);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(338, 350);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(103, 49);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Rejouer";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // lblWinner
             // 
             this.lblWinner.AutoSize = true;
             this.lblWinner.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblWinner.ForeColor = System.Drawing.Color.Goldenrod;
-            this.lblWinner.Location = new System.Drawing.Point(49, 368);
+            this.lblWinner.Location = new System.Drawing.Point(72, 368);
             this.lblWinner.Name = "lblWinner";
-            this.lblWinner.Size = new System.Drawing.Size(264, 31);
+            this.lblWinner.Size = new System.Drawing.Size(0, 31);
             this.lblWinner.TabIndex = 5;
-            this.lblWinner.Text = "Victoire du joueur X !";
             // 
             // lblPlayer1
             // 
@@ -127,6 +110,15 @@ namespace JeuDuPendu
             this.grpLetters.TabIndex = 9;
             this.grpLetters.TabStop = false;
             this.grpLetters.Text = "Lettres déjà proposées";
+            // 
+            // lblLettersEntered
+            // 
+            this.lblLettersEntered.AutoSize = true;
+            this.lblLettersEntered.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLettersEntered.Location = new System.Drawing.Point(12, 26);
+            this.lblLettersEntered.Name = "lblLettersEntered";
+            this.lblLettersEntered.Size = new System.Drawing.Size(0, 18);
+            this.lblLettersEntered.TabIndex = 0;
             // 
             // btnPly2Confirm
             // 
@@ -170,16 +162,15 @@ namespace JeuDuPendu
             this.label2.TabIndex = 13;
             this.label2.Text = "Propose une lettre :";
             // 
-            // lblMysteryWord
+            // lblSecretWord
             // 
-            this.lblMysteryWord.AutoSize = true;
-            this.lblMysteryWord.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMysteryWord.Location = new System.Drawing.Point(51, 211);
-            this.lblMysteryWord.Name = "lblMysteryWord";
-            this.lblMysteryWord.Size = new System.Drawing.Size(230, 24);
-            this.lblMysteryWord.TabIndex = 14;
-            this.lblMysteryWord.Text = "_ _ _ _ _ _ _ _ _ _ _ _ _ _ _";
-            this.lblMysteryWord.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblSecretWord.AutoSize = true;
+            this.lblSecretWord.Font = new System.Drawing.Font("Courier New", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSecretWord.Location = new System.Drawing.Point(36, 196);
+            this.lblSecretWord.Name = "lblSecretWord";
+            this.lblSecretWord.Size = new System.Drawing.Size(0, 32);
+            this.lblSecretWord.TabIndex = 14;
+            this.lblSecretWord.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblInputConfirm
             // 
@@ -191,22 +182,43 @@ namespace JeuDuPendu
             this.lblInputConfirm.Size = new System.Drawing.Size(0, 16);
             this.lblInputConfirm.TabIndex = 15;
             // 
-            // lblLettersEntered
+            // label3
             // 
-            this.lblLettersEntered.AutoSize = true;
-            this.lblLettersEntered.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLettersEntered.Location = new System.Drawing.Point(12, 26);
-            this.lblLettersEntered.Name = "lblLettersEntered";
-            this.lblLettersEntered.Size = new System.Drawing.Size(0, 18);
-            this.lblLettersEntered.TabIndex = 0;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(436, 368);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(44, 13);
+            this.label3.TabIndex = 17;
+            this.label3.Text = "Rejouer";
+            // 
+            // imgRejouer
+            // 
+            this.imgRejouer.Image = global::JeuDuPendu.Properties.Resources.playagain;
+            this.imgRejouer.Location = new System.Drawing.Point(382, 353);
+            this.imgRejouer.Name = "imgRejouer";
+            this.imgRejouer.Size = new System.Drawing.Size(48, 46);
+            this.imgRejouer.TabIndex = 16;
+            this.imgRejouer.TabStop = false;
+            this.imgRejouer.Click += new System.EventHandler(this.imgRejouer_Click);
+            // 
+            // pctPendu
+            // 
+            this.pctPendu.Image = ((System.Drawing.Image)(resources.GetObject("pctPendu.Image")));
+            this.pctPendu.Location = new System.Drawing.Point(338, 96);
+            this.pctPendu.Name = "pctPendu";
+            this.pctPendu.Size = new System.Drawing.Size(230, 236);
+            this.pctPendu.TabIndex = 0;
+            this.pctPendu.TabStop = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(592, 423);
+            this.ClientSize = new System.Drawing.Size(592, 418);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.imgRejouer);
             this.Controls.Add(this.lblInputConfirm);
-            this.Controls.Add(this.lblMysteryWord);
+            this.Controls.Add(this.lblSecretWord);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnPly1Confirm);
@@ -216,15 +228,15 @@ namespace JeuDuPendu
             this.Controls.Add(this.lblPlayer2);
             this.Controls.Add(this.lblPlayer1);
             this.Controls.Add(this.lblWinner);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.cbbAlphabet);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.pctPendu);
             this.Name = "Form1";
             this.Text = "Jeu du pendu";
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.grpLetters.ResumeLayout(false);
             this.grpLetters.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.imgRejouer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pctPendu)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -232,9 +244,8 @@ namespace JeuDuPendu
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pctPendu;
         private System.Windows.Forms.ComboBox cbbAlphabet;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label lblWinner;
         private System.Windows.Forms.Label lblPlayer1;
         private System.Windows.Forms.Label lblPlayer2;
@@ -244,9 +255,11 @@ namespace JeuDuPendu
         private System.Windows.Forms.Button btnPly1Confirm;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label lblMysteryWord;
+        private System.Windows.Forms.Label lblSecretWord;
         private System.Windows.Forms.Label lblInputConfirm;
         private System.Windows.Forms.Label lblLettersEntered;
+        private System.Windows.Forms.PictureBox imgRejouer;
+        private System.Windows.Forms.Label label3;
     }
 }
 

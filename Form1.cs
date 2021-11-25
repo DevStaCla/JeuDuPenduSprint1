@@ -12,6 +12,12 @@ namespace JeuDuPendu
 {
     public partial class Form1 : Form
     {
+        // déclaration du mot à trouver et du nombre de lettres à trouver
+        char[] lettres;
+        int nbCarac;
+        // déclaration du nombre d'essais
+        int essais = 10;
+
         public Form1()
         {
             InitializeComponent();
@@ -22,6 +28,17 @@ namespace JeuDuPendu
         /// </summary>
         private void Phase1()
         {
+            // réinitialisation des champs et valeurs
+            txtPly1.Text = "";
+            txtPly1.Enabled = true;
+            btnPly1Confirm.Enabled = true;
+            lblInputConfirm.Text = "";
+            lblLettersEntered.Text = "";
+            lblSecretWord.Text = "";
+            lblSecretWord.ForeColor = Color.Black;
+            lblWinner.Text = "";
+            essais = 10;
+            pctPendu.Image = (Image)JeuDuPendu.Properties.Resources.ResourceManager.GetObject("pendu0");
             // initialisation de la liste contenant l'alphabet
             RemplitCombo(cbbAlphabet);
             // désactivation de la liste et du bouton du J2
@@ -34,7 +51,7 @@ namespace JeuDuPendu
         /// <summary>
         /// lance la phase 2 du programme (J2 devine le mot)
         /// </summary>
-        private void Phase2(char[] lettres)
+        private void Phase2()
         {
             // désactivation du champ et du bouton du J1
             txtPly1.Enabled = false;
@@ -43,6 +60,11 @@ namespace JeuDuPendu
             cbbAlphabet.Enabled = true;
             cbbAlphabet.Focus();
             btnPly2Confirm.Enabled = true;
+            // initialisation du label du mot à deviner
+            for (int i = 0; i < lettres.Length; i++)
+            {
+                lblSecretWord.Text += "_";
+            } 
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -62,7 +84,7 @@ namespace JeuDuPendu
         private void btnPly1Confirm_Click(object sender, EventArgs e)
         {
             String mot = txtPly1.Text.ToUpper();
-            char[] lettres = new char[mot.Length];
+            lettres = new char[mot.Length];
             int i = 0;
             bool correct = true;
             if (mot.Length == 0 || mot.Length > 15)
@@ -89,7 +111,9 @@ namespace JeuDuPendu
                 {
                     lblInputConfirm.ForeColor = Color.Green;
                     lblInputConfirm.Text = "Mot enregistré";
-                    Phase2(lettres);
+                    txtPly1.Text = "";
+                    nbCarac = mot.Length;
+                    Phase2();
                 }
                 else
                 {
@@ -118,8 +142,62 @@ namespace JeuDuPendu
 
         private void btnPly2Confirm_Click(object sender, EventArgs e)
         {
-            lblLettersEntered.Text += cbbAlphabet.SelectedItem;
-            cbbAlphabet.Items.Remove(cbbAlphabet.SelectedItem);
+            // test si le caractère est bien A-Z
+            if (! (cbbAlphabet.SelectedIndex == -1))
+            {
+                // copie de l'état actuel des lettres devinées par J2
+                string strNewSecWord = lblSecretWord.Text;
+                // booléen pour dire si lettre est présente ou non
+                bool lettrePresente = false;
+                // comparaison de la lettre avec celles du mot à deviner
+                for (int i = 0; i < lettres.Length; i++)
+                {
+                    if (cbbAlphabet.SelectedItem.Equals(lettres[i]))
+                    {
+                        strNewSecWord = strNewSecWord.Substring(0, i) + cbbAlphabet.SelectedItem + lblSecretWord.Text.Substring(i + 1, lettres.Length - i - 1);
+                        lettrePresente = true;
+                        nbCarac--;
+                    }
+                }
+                // remplacement du mot secret
+                lblSecretWord.Text = strNewSecWord;
+                // ajout de la lettre à la liste des lettres déjà proposées
+                lblLettersEntered.Text += cbbAlphabet.SelectedItem;
+                // suppression de la lettre dans la liste Combobox
+                cbbAlphabet.Items.Remove(cbbAlphabet.SelectedItem);
+                // teste si la lettre a été trouvée au moins une fois
+                if (lettrePresente == false)
+                {
+                    essais--;
+                    int nbImage = 10 - essais;
+                    pctPendu.Image = (Image)JeuDuPendu.Properties.Resources.ResourceManager.GetObject("pendu" + nbImage);
+                }
+                // test s'il reste des essais ou non
+                if (essais == 0)
+                {
+                    // désactivation des champs de J2
+                    cbbAlphabet.Enabled = false;
+                    btnPly2Confirm.Enabled = false;
+                    // affichage du mot à deviner
+                    lblSecretWord.ForeColor = Color.Red;
+                    lblSecretWord.Text = "";
+                    for (int i = 0; i < lettres.Length; i++)
+                    {
+                        lblSecretWord.Text += lettres[i];
+                    }
+                    // proclamation du vainqueur
+                    lblWinner.Text = "Victoire du joueur 1 !";
+                }
+                // test si toutes les lettres ont été trouvées
+                if (nbCarac == 0)
+                {
+                    // désactivation des champs de J2
+                    cbbAlphabet.Enabled = false;
+                    btnPly2Confirm.Enabled = false;
+                    // proclamation du vainqueur
+                    lblWinner.Text = "Victoire du joueur 2 !";
+                }
+            }            
         }
 
         private void cbbAlphabet_KeyPress(object sender, KeyPressEventArgs e)
@@ -128,6 +206,11 @@ namespace JeuDuPendu
             {
                 btnPly2Confirm_Click(null, null);
             }
+        }
+
+        private void imgRejouer_Click(object sender, EventArgs e)
+        {
+            Phase1();
         }
     }
 }

@@ -65,6 +65,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -78,6 +79,42 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Resources\playagain.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Resources\pendu0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Resources\pendu1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Resources\pendu2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Resources\pendu3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Resources\pendu4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Resources\pendu5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Resources\pendu6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Resources\pendu7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Resources\pendu8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Resources\pendu9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Resources\pendu10.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
